@@ -24,7 +24,7 @@ or
 
 to add custom colors.
 
-![ToColor1](https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png)
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=98>
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor2.png width=96>
 
