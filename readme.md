@@ -16,11 +16,11 @@ The parameters are:
 
 Examples:
 
-`std::cout << ToColor("Hello world!", Colors::MistyRose, Colors::Red) << std::endl;`
+```std::cout << ToColor("Hello world!", Colors::MistyRose, Colors::Red) << std::endl;```
 
 or
 
-`std::cout << ToColor("Hello world!", (Color){255, 228, 225}, (Color){255, 0, 0}) << std::endl;`
+```std::cout << ToColor("Hello world!", (Color){255, 228, 225}, (Color){255, 0, 0}) << std::endl;```
 
 to add custom colors.
 
@@ -41,7 +41,7 @@ The parameters are:
 
 Examples:
 
-`std::cout << Rainbow("This is a short text.") << std::endl;`
+```std::cout << Rainbow("This is a short text.") << std::endl;```
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowShort.png width=167>,
 
