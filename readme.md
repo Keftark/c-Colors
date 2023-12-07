@@ -24,9 +24,9 @@ or
 
 to add custom colors.
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=128>
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=98>
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor2.png width=128>
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor2.png width=96>
 
 <h3>Rainbow()</h3>
 
