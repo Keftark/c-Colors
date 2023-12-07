@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/07 08:57:51 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/07 16:51:41 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ Color Colors::DeepPink = {255, 20, 147};
 */
 std::string RGB(int r, int g, int b, Mode mode)
 {
-	return ("\033["  + std::to_string(mode) + ";2;" + std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b) + "m");
+	return ("\033["  + std::to_string(mode) + ";2;" + std::to_string(r) + ";"
+		+ std::to_string(g) + ";" + std::to_string(b) + "m");
 }
 
 /* Returns the R, G, B values of the character according to its place in the string. 
@@ -50,9 +51,7 @@ static Color GetRainbowColor(int index, int length)
 {
 	Color	color;
 	double	mult = length / 6.0;
-	double	mult2 = 255 / mult;
-	double	mod = fmod(index, mult);
-	double	result = mod * mult2;
+	double	result = fmod(index, mult) * 255 / mult;
 
 	if (result > 254)
 		result = 0;
@@ -104,7 +103,6 @@ static Color GetRainbowColor(int index, int length)
 std::string Rainbow(std::string str, Mode mode)
 {
 	Color       color;
-	std::string rainbow;
 	std::string result;
 	int			length = str.length() % 255;
 
@@ -112,8 +110,8 @@ std::string Rainbow(std::string str, Mode mode)
 	{
 		color = GetRainbowColor(i, length);
 		result.append("\033[" + std::to_string(mode) + ";2;" + std::to_string(color.r) + ";"
-		+ std::to_string(color.g) + ";" + std::to_string(color.b)
-		+ "m" + str[i] + "\033[0m");
+			+ std::to_string(color.g) + ";" + std::to_string(color.b)
+			+ "m" + str[i] + "\033[0m");
 	}
 	return (result);
 }
@@ -126,27 +124,21 @@ std::string Rainbow(std::string str, Mode mode)
 std::string		ToColor(std::string str, Color start, Color end)
 {
 	Color       color = start;
-	std::string rainbow;
 	std::string result;
 	int			length = str.length();
-	double r_off, g_off, b_off;
-	double r_col = 0, g_col = 0, b_col = 0;
+	double		r_off, g_off, b_off;
 
 	r_off = (end.r - start.r) / (double)length;
 	g_off = (end.g - start.g) / (double)length;
 	b_off = (end.b - start.b) / (double)length;
 	for (size_t i = 0; i < length; i++)
 	{
-		r_col += r_off;
-		g_col += g_off;
-		b_col += b_off;
-		color.r = start.r + r_col;
-		color.g = start.g + g_col;
-		color.b = start.b + b_col;
+		color.r = start.r + r_off * (i + 1);
+		color.g = start.g + g_off * (i + 1);
+		color.b = start.b + b_off * (i + 1);
 		result.append("\033[38;2;" + std::to_string(color.r) + ";"
 		+ std::to_string(color.g) + ";" + std::to_string(color.b)
 		+ "m" + str[i] + "\033[0m");
 	}
 	return (result);
 }
-
