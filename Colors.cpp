@@ -6,12 +6,13 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/06 17:37:19 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/07 08:57:51 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Colors.hpp"
 
+/* Colors to call with `Colors::Red` for example */
 Color Colors::Blue = {0, 0, 255};
 Color Colors::Cyan = {0, 255, 255};
 Color Colors::Red = {255, 0, 0};
@@ -34,7 +35,7 @@ Color Colors::DeepPink = {255, 20, 147};
 	@param r(red) 0 - 255.
 	@param g(green) 0 - 255.
 	@param b(blue) 0 - 255.
-	@param mode (optional) to change the font color, the background...
+	@param mode (optional) To change the foreground(character) or the background color.
 */
 std::string RGB(int r, int g, int b, Mode mode)
 {
@@ -42,15 +43,15 @@ std::string RGB(int r, int g, int b, Mode mode)
 }
 
 /* Returns the R, G, B values of the character according to its place in the string. 
-	@param index the index of the processed character.
-	@param length the max length of the string.
+	@param index The index of the processed character.
+	@param length The max length of the string.
 */
 static Color GetRainbowColor(int index, int length)
 {
 	Color	color;
 	double	mult = length / 6.0;
 	double	mult2 = 255 / mult;
-	double 	mod = fmod(index, mult);
+	double	mod = fmod(index, mult);
 	double	result = mod * mult2;
 
 	if (result > 254)
@@ -148,3 +149,4 @@ std::string		ToColor(std::string str, Color start, Color end)
 	}
 	return (result);
 }
+
