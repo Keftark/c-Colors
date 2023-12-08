@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/07 16:51:41 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/07 18:37:30 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ std::string RGB(int r, int g, int b, Mode mode)
 	@param index The index of the processed character.
 	@param length The max length of the string.
 */
-static Color GetRainbowColor(int index, int length)
+static Color GetRainbowColor(size_t index, size_t length)
 {
 	Color	color;
 	double	mult = length / 6.0;
@@ -55,7 +55,7 @@ static Color GetRainbowColor(int index, int length)
 
 	if (result > 254)
 		result = 0;
-	switch ((int)(index / mult))
+	switch ((size_t)(index / mult))
 	{
 		case (0): // red to yellow
 			color.r = 255;
@@ -104,12 +104,13 @@ std::string Rainbow(std::string str, Mode mode)
 {
 	Color       color;
 	std::string result;
-	int			length = str.length() % 255;
+	size_t		length = str.length() % 255;
 
 	for (size_t i = 0; i < length; i++)
 	{
 		color = GetRainbowColor(i, length);
-		result.append("\033[" + std::to_string(mode) + ";2;" + std::to_string(color.r) + ";"
+		result.append("\033[" + std::to_string(mode) + ";2;"
+			+ std::to_string(color.r) + ";"
 			+ std::to_string(color.g) + ";" + std::to_string(color.b)
 			+ "m" + str[i] + "\033[0m");
 	}
@@ -125,7 +126,7 @@ std::string		ToColor(std::string str, Color start, Color end)
 {
 	Color       color = start;
 	std::string result;
-	int			length = str.length();
+	size_t		length = str.length();
 	double		r_off, g_off, b_off;
 
 	r_off = (end.r - start.r) / (double)length;
