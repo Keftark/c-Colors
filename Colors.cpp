@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/07 18:37:30 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/08 18:05:05 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ Color Colors::Yellow = {255, 255, 0};
 Color Colors::MistyRose = {255, 228, 225};
 Color Colors::Pink = {255, 192, 203};
 Color Colors::DeepPink = {255, 20, 147};
+
+
+std::string	Error_Msg(std::string msg)
+{
+	std::cout << std::endl << RED << "Error:" << RESET << std::endl <<
+		std::setw(8) << "" << LIGHTRED << msg << RESET << std::endl;
+	return (NULL);
+}
 
 /* Returns the complete color code with the given parameters. 
 	@param r(red) 0 - 255.
@@ -122,24 +130,48 @@ std::string Rainbow(std::string str, Mode mode)
 	@param start The starting color.
 	@param end The ending color.
 */
-std::string		ToColor(std::string str, Color start, Color end)
+std::string		ToColor(std::string str, int count, ...)
 {
-	Color       color = start;
+	va_list		va;
+	Color		color, fromColor, toColor;
 	std::string result;
 	size_t		length = str.length();
+	double		div = length / (count - 1);
 	double		r_off, g_off, b_off;
+	int			i = 0;
 
-	r_off = (end.r - start.r) / (double)length;
-	g_off = (end.g - start.g) / (double)length;
-	b_off = (end.b - start.b) / (double)length;
-	for (size_t i = 0; i < length; i++)
+	if (count <= 1)
 	{
-		color.r = start.r + r_off * (i + 1);
-		color.g = start.g + g_off * (i + 1);
-		color.b = start.b + b_off * (i + 1);
-		result.append("\033[38;2;" + std::to_string(color.r) + ";"
-		+ std::to_string(color.g) + ";" + std::to_string(color.b)
-		+ "m" + str[i] + "\033[0m");
+		Error_Msg("You must put at least 2 colors!");
+		return (NULL);
 	}
+	if (length < count)
+	{
+		Error_Msg("You must put less colors than the total character count!");
+		return (NULL);
+	}
+	va_start(va, count);
+	fromColor = va_arg(va, Color);
+	while (i < length)
+	{
+		toColor = va_arg(va, Color);
+		if (toColor.r > 255 || toColor.g > 255 || toColor.b > 255)
+			toColor = fromColor;
+		r_off = (toColor.r - fromColor.r) / (double)div;
+		g_off = (toColor.g - fromColor.g) / (double)div;
+		b_off = (toColor.b - fromColor.b) / (double)div;
+		for (size_t j = 0; j < div; j++)
+		{
+			color.r = fromColor.r + r_off * (j + 1);
+			color.g = fromColor.g + g_off * (j + 1);
+			color.b = fromColor.b + b_off * (j + 1);
+			result.append("\033[38;2;" + std::to_string(color.r) + ";"
+			+ std::to_string(color.g) + ";" + std::to_string(color.b)
+			+ "m" + str[i] + "\033[0m");
+			i++;
+		}
+		fromColor = toColor;
+	}
+	va_end(va);
 	return (result);
 }

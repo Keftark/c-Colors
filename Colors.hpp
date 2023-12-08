@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/06 17:36:43 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/08 10:03:55 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define COLORS_HPP
 
 #include <iostream>
+#include <iomanip>
 #include <cmath>
+#include <stdarg.h>
 
 // Custom colors
+#define LIGHTRED		"\033[38;2;255;100;100m"
 #define LIME			"\033[38;2;165;255;0m"
 #define DARKTEAL		"\033[38;2;0;100;100m"
 #define TEAL			"\033[38;2;0;180;180m"
@@ -93,6 +96,6 @@ typedef enum color_mode
 
 std::string		RGB(int r, int g, int b, Mode mode = foreground);
 std::string		Rainbow(std::string str, Mode mode = foreground);
-std::string		ToColor(std::string str, Color start, Color end);
+std::string		ToColor(std::string str, int count, ...);
 
 #endif
