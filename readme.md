@@ -55,8 +55,8 @@ Examples:
 or
 
 	std::cout << Rainbow(
-		"                                                                                        "
-		, background) << std::endl;
+	"                                                                                        "
+	, background) << std::endl;
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowBackground.png width=741>
 
