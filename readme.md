@@ -13,6 +13,7 @@ This function will print a string with a color gradient.
 The parameters are:
 
 - `std::string msg`: The message to display.
+- `Mode mode` (optional): To set the colors on the foreground or background. Without this parameter, it will change the foreground color.
 - `Color start`: The starting color.
 - `Color end`: The ending color.
 
@@ -53,9 +54,11 @@ Examples:
 
 or
 
-	std::cout << Rainbow("This is a beautiful background rainbow!", background) << std::endl;
+	std::cout << Rainbow(
+		"                                                                                        "
+		, background) << std::endl;
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowBackground.png width=313>
+<img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowBackground.png width=741>
 
 <h3>RGB()</h3>
 
@@ -76,11 +79,11 @@ or
 
 	std::cout << RGB(165, 255, 0) << "Hello World!" << RESET << std::endl;
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowForeground.png width=94>
+<img src=https://github.com/Keftark/saves/blob/main/Colors/RGBForeground.png width=94>
 
 
 <h2>Defines</h2>
 
-There are multiple `#define` in the Colors.hpp file for common and custom colors.
+There are multiple `#define` in the `Colors.hpp` file for common and custom colors.
 
 Feel free to check them and add what you want!
