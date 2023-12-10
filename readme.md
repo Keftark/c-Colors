@@ -10,26 +10,28 @@ There are several functions to call:
 
 This function will print a string with a color gradient.
 
+You can add as many colors as you like, as long as their number is greater than or equal to the number of characters.
+
 The parameters are:
 
 - `std::string msg`: The message to display.
 - `Mode mode` (optional): To set the colors on the foreground or background. Without this parameter, it will change the foreground color.
-- `Color start`: The starting color.
-- `Color end`: The ending color.
+- `int count` The amount of colors to be calculated.
+- `...` The colors (ex: `Colors::Red`).
 
 Examples:
 
-	std::cout << ToColor("Hello world!", Colors::MistyRose, Colors::Red) << std::endl;
+	std::cout << ToColor("Hello world!", 2, Colors::MistyRose, Colors::Red) << std::endl;
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=98>
 
 or
 
-	std::cout << ToColor("Hello world!", (Color){255, 228, 225}, (Color){255, 0, 0}) << std::endl;
+	std::cout << ToColor("Hello world!", 2, (Color){255, 228, 225}, (Color){255, 0, 0}) << std::endl;
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor2.png width=96>
 
 to add custom colors.
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=98>
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor2.png width=96>
 
 <h3>Rainbow()</h3>
 
