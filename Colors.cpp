@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/09 18:16:49 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/11 09:32:35 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,30 @@ std::string RGB(int r, int g, int b, Mode mode)
 {
 	return ("\033["  + std::to_string(mode) + ";2;" + std::to_string(r) + ";"
 		+ std::to_string(g) + ";" + std::to_string(b) + "m");
+}
+
+/* Returns the complete foreground and background color code with the given parameters. 
+	@param r(foreground red) 0 - 255.
+	@param g(foreground green) 0 - 255.
+	@param b(foreground blue) 0 - 255.
+	@param bg_r(background red) 0 - 255.
+	@param bg_g(background green) 0 - 255.
+	@param bg_b(background blue) 0 - 255.
+*/
+std::string RGB2(int r, int g, int b, int bg_r, int bg_g, int bg_b)
+{
+	return ("\033[38;2;" + std::to_string(r) + ";"
+		+ std::to_string(g) + ";" + std::to_string(b) + ";48;2;"
+		+ std::to_string(bg_r) + ";"
+		+ std::to_string(bg_g) + ";" + std::to_string(bg_b) + "m");
+}
+
+std::string RGB2(Color fg_color, Color bg_color)
+{
+	return ("\033[38;2;" + std::to_string(fg_color.r) + ";"
+		+ std::to_string(fg_color.g) + ";" + std::to_string(fg_color.b) + ";48;2;"
+		+ std::to_string(bg_color.r) + ";"
+		+ std::to_string(bg_color.g) + ";" + std::to_string(bg_color.b) + "m");
 }
 
 /* Returns a string with beautiful rainbow colors! 

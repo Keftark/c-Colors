@@ -15,7 +15,7 @@ You can add as many colors as you like, as long as their number is greater than 
 The parameters are:
 
 - `std::string msg`: The message to display.
-- `Mode mode` (optional): To set the colors on the foreground or background. Without this parameter, it will change the foreground color.
+- `Mode mode` (optional): To set the colors on the `foreground` or `background`. Without this parameter, it will change the foreground color.
 - `int count` The amount of colors to be calculated.
 - `...` The colors (ex: `Colors::Red`).
 
@@ -33,7 +33,7 @@ to add custom colors.
 
 
 
-<h3>Rainbow()</h3>
+<h3>Rainbow():</h3>
 
 This function will print a string with all the rainbow colors!
 
@@ -42,7 +42,7 @@ Obviously, the number of characters must be equal to or greater than the number 
 The parameters are:
 
 - `std::string str`: The message to display.
-- `Mode mode` (optional): To set the colors on the foreground or background. Without this parameter, it will change the foreground color.
+- `Mode mode` (optional): To set the colors on the `foreground` or `background`. Without this parameter, it will change the foreground color.
 
 Examples:
 
@@ -50,7 +50,7 @@ Examples:
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowShort.png width=167>,
 
-	std::cout << Rainbow("This is a longer text. It has to be LONGER! Yes, that's better...") << std::endl;
+	std::cout << Rainbow("This is a longer text. It has to be LONGER! Yes, that's better...", foreground) << std::endl;
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowLong.png width=519>
 
@@ -62,14 +62,14 @@ or
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/RainbowBackground.png width=741>
 
-<h3>RGB()</h3>
+<h3>RGB():</h3>
 
-This function is a shortcut to add a custom color to a text.
+This function allows you to add a custom color to a text with a simple command.
 
 The parameters are:
 
-- `int R, int G, int B`: The r, g, b values from 0 to 255.
-- `Mode mode` (optional): To set the color on the foreground or background. Without this parameter, it will change the foreground color.
+- `int r, g, b`: The r, g, b values from 0 to 255.
+- `Mode mode` (optional): To set the color on the `foreground` or `background`. Without this parameter, it will only change the foreground color.
 
 Examples:
 
@@ -83,6 +83,31 @@ or
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/RGBForeground.png width=94>
 
+<h3>RGB2():</h3>
+
+This function allows you to add custom colors to the foreground and the background with a simple command.
+
+The parameters are:
+
+- `int fg_r, fg_g, fg_b`: The r, g, b values from 0 to 255 to apply to the foreground.
+- `int bg_r, bg_g, bg_b`: The r, g, b values from 0 to 255 to apply to the background.
+
+or
+
+- `Color fg_color`: The foreground/font color. (`Colors::Red` or `(Color){255, 0, 0}`).
+- `Color bg_color`: The background color. (`Colors::Blue` or `(Color){0, 0, 255}`).
+
+Examples:
+
+	std::cout << RGB2(255, 0, 0, 255, 255, 0) << "Hello World!" << RESET << std::endl;
+
+<img src=https://github.com/Keftark/saves/blob/main/Colors/RGB2_1.png width=96>
+
+or
+
+	std::cout << RGB2(Colors::Cyan, Colors::DarkMagenta) << "Hello World!" << RESET << std::endl;
+
+<img src=https://github.com/Keftark/saves/blob/main/Colors/RGB2_2.png width=96>
 
 <h2>Defines</h2>
 

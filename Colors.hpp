@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/09 17:03:52 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/11 09:31:28 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ typedef enum color_mode
 }				Mode;
 
 std::string		RGB(int r, int g, int b, Mode mode = foreground);
+std::string		RGB2(int r, int g, int b, int bg_r, int bg_g, int bg_b);
+std::string		RGB2(Color fg_color, Color bg_color);
 std::string		Rainbow(std::string str, Mode mode = foreground);
 std::string		ToColor(std::string str, Mode mode, int count, ...);
 std::string		ToColor(std::string str, int count, ...);
