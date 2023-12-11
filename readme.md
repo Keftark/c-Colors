@@ -26,7 +26,7 @@ Examples:
 
 or
 
-	std::cout << ToColor("Hello world!", 2, (Color){255, 228, 225}, (Color){255, 0, 0}) << std::endl;
+	std::cout << ToColor("Hello world!", 2, (Color){50, 255, 255}, (Color){255, 0, 93}) << std::endl;
 <img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor2.png width=96>
 
 to add custom colors.
