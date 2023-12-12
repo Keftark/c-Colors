@@ -38,6 +38,8 @@ If you want to add a simple gradient between 2 colors, you can also call the `To
 - `Color start`: The starting color.
 - `Color end`: The final color.
 
+Example:
+
 	std::cout << ToColor("Hello world!", Colors::MistyRose, Colors::Red) << std::endl;
 <img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=98>
 
