@@ -21,8 +21,8 @@ The parameters are:
 
 Examples:
 
-	std::cout << ToColor("Hello world!", 2, Colors::MistyRose, Colors::Red) << std::endl;
-<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=98>
+	std::cout << std::endl << ToColor("Lorem ipsum dolor sit amet, consectetur adipiscing elit...", 4, Colors::Cyan, Colors::DeepPink, Colors::Green, Colors::Cyan) << std::endl;
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor0.png width=463>
 
 or
 
@@ -31,7 +31,15 @@ or
 
 to add custom colors.
 
+If you want to add a simple gradient between 2 colors, you can also call the `ToColor()` function with :
 
+- `std::string msg`: The message to display.
+- `Mode mode` (optional): To set the colors on the `foreground` or `background`. Without this parameter, it will change the foreground color.
+- `Color start`: The starting color.
+- `Color end`: The final color.
+
+	std::cout << ToColor("Hello world!", Colors::MistyRose, Colors::Red) << std::endl;
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor1.png width=98>
 
 <h3>Rainbow():</h3>
 

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/11 09:32:35 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/12 08:18:25 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,4 +186,25 @@ std::string		ToColor(std::string str, int count, ...)
 	}
 	va_end(va);
 	return (result);
+}
+
+/* Returns a string with color gradients between both colors.
+	@param str The string to be printed.
+	@param start The starting color.
+	@param end The final color.
+*/
+std::string		ToColor(std::string str, Color start, Color end)
+{
+	return (ToColor(str, 2, start, end));
+}
+
+/* Returns a string with color gradients between both colors.
+	@param str The string to be printed.
+	@param mode To change the foreground(character) or the background color.
+	@param start The starting color.
+	@param end The final color.
+*/
+std::string		ToColor(std::string str, Mode mode, Color start, Color end)
+{
+	return (ToColor(str, mode, 2, start, end));
 }

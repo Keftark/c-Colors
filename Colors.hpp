@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/11 09:31:28 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/12 08:17:27 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,7 @@ std::string		RGB2(Color fg_color, Color bg_color);
 std::string		Rainbow(std::string str, Mode mode = foreground);
 std::string		ToColor(std::string str, Mode mode, int count, ...);
 std::string		ToColor(std::string str, int count, ...);
+std::string		ToColor(std::string str, Color color_a, Color color_b);
+std::string		ToColor(std::string str, Mode mode, Color color_a, Color color_b);
 
 #endif
