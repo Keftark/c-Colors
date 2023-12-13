@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/12 08:18:25 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:20:04 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ std::string	Error_Msg(std::string msg)
 */
 std::string RGB(int r, int g, int b, Mode mode)
 {
-	return ("\033["  + std::to_string(mode) + ";2;" + std::to_string(r) + ";"
-		+ std::to_string(g) + ";" + std::to_string(b) + "m");
+	std::stringstream ss;
+	ss << "\033[" << mode << ";2;" << r << ";" << g << ";" << b << "m";
+	return (ss.str());
 }
 
 /* Returns the complete foreground and background color code with the given parameters. 
@@ -62,18 +63,18 @@ std::string RGB(int r, int g, int b, Mode mode)
 */
 std::string RGB2(int r, int g, int b, int bg_r, int bg_g, int bg_b)
 {
-	return ("\033[38;2;" + std::to_string(r) + ";"
-		+ std::to_string(g) + ";" + std::to_string(b) + ";48;2;"
-		+ std::to_string(bg_r) + ";"
-		+ std::to_string(bg_g) + ";" + std::to_string(bg_b) + "m");
+	std::stringstream ss;
+	ss << "\033[38;2;" << r << ";" << g << ";" << b << ";48;2;"
+		<< bg_r << ";" << bg_g << ";" << bg_b << "m";
+	return (ss.str());
 }
 
 std::string RGB2(Color fg_color, Color bg_color)
 {
-	return ("\033[38;2;" + std::to_string(fg_color.r) + ";"
-		+ std::to_string(fg_color.g) + ";" + std::to_string(fg_color.b) + ";48;2;"
-		+ std::to_string(bg_color.r) + ";"
-		+ std::to_string(bg_color.g) + ";" + std::to_string(bg_color.b) + "m");
+	std::stringstream ss;
+	ss << "\033[38;2;" << fg_color.r << ";" << fg_color.g << ";" << fg_color.b
+	<< ";48;2;" << bg_color.r << ";" << bg_color.g << ";" << bg_color.b << "m";
+	return (ss.str());
 }
 
 /* Returns a string with beautiful rainbow colors! 
@@ -92,7 +93,7 @@ static int	SetMinMax(int value)
 		value = 0;
 	else if (value > 255)
 		value = 255;
-		return (value);
+	return (value);
 }
 
 /* Returns a string with color gradients between each color.
@@ -101,15 +102,15 @@ static int	SetMinMax(int value)
 	@param count The amount of colors to be calculated.
 	@param ... The colors (ex: `Colors::Red`).
 */
-std::string		ToColor(std::string str, Mode mode, int count, ...)
+std::string		ToColor(std::string str, Mode mode, size_t count, ...)
 {
+	std::stringstream ss;
 	va_list		va;
 	Color		color, fromColor, toColor;
-	std::string result;
 	size_t		length = str.length();
 	double		div = (double)length / (count - 1);
 	double		r_off, g_off, b_off;
-	int			i = 0;
+	size_t			i = 0;
 
 	if (count <= 1)
 		return (Error_Msg("You must put at least 2 colors!"));
@@ -130,17 +131,16 @@ std::string		ToColor(std::string str, Mode mode, int count, ...)
 			color.r = fromColor.r + r_off * (j + 1);
 			color.g = fromColor.g + g_off * (j + 1);
 			color.b = fromColor.b + b_off * (j + 1);
-			result.append("\033[" + std::to_string(mode) + ";2;"
-				+ std::to_string(SetMinMax(color.r)) + ";"
-				+ std::to_string(SetMinMax(color.g)) + ";"
-				+ std::to_string(SetMinMax(color.b)) + "m"
-				+ str[i] + "\033[0m");
+			ss << "\033[" << mode << ";2;"
+				<< SetMinMax(color.r) << ";"
+				<< SetMinMax(color.g) << ";"
+				<< SetMinMax(color.b) << "m" << str[i] << "\033[0m";
 			i++;
 		}
 		fromColor = toColor;
 	}
 	va_end(va);
-	return (result);
+	return (ss.str());
 }
 
 /* Returns a string with color gradients between each color.
@@ -148,15 +148,15 @@ std::string		ToColor(std::string str, Mode mode, int count, ...)
 	@param count The amount of colors to be calculated.
 	@param ... The colors (ex: `Colors::Red`).
 */
-std::string		ToColor(std::string str, int count, ...)
+std::string		ToColor(std::string str, size_t count, ...)
 {
+	std::stringstream ss;
 	va_list		va;
 	Color		color, fromColor, toColor;
-	std::string result;
 	size_t		length = str.length();
 	double		div = (double)length / (count - 1);
 	double		r_off, g_off, b_off;
-	int			i = 0;
+	size_t			i = 0;
 
 	if (count <= 1)
 		return (Error_Msg("You must put at least 2 colors!"));
@@ -175,17 +175,16 @@ std::string		ToColor(std::string str, int count, ...)
 			color.r = fromColor.r + r_off * (j + 1);
 			color.g = fromColor.g + g_off * (j + 1);
 			color.b = fromColor.b + b_off * (j + 1);
-			result.append("\033[38;2;"
-				+ std::to_string(SetMinMax(color.r)) + ";"
-				+ std::to_string(SetMinMax(color.g)) + ";"
-				+ std::to_string(SetMinMax(color.b)) + "m"
-				+ str[i] + "\033[0m");
+			ss << "\033[38;2;"
+				<< SetMinMax(color.r) << ";"
+				<< SetMinMax(color.g) << ";"
+				<< SetMinMax(color.b) << "m" << str[i] << "\033[0m";
 			i++;
 		}
 		fromColor = toColor;
 	}
 	va_end(va);
-	return (result);
+	return (ss.str());
 }
 
 /* Returns a string with color gradients between both colors.

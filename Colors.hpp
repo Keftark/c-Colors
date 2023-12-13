@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/12 08:17:27 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:18:37 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <stdarg.h>
+#include <cstdarg>
+#include <sstream>
 
 // Custom colors
 #define LIGHTRED		"\033[38;2;255;100;100m"
@@ -99,8 +100,8 @@ std::string		RGB(int r, int g, int b, Mode mode = foreground);
 std::string		RGB2(int r, int g, int b, int bg_r, int bg_g, int bg_b);
 std::string		RGB2(Color fg_color, Color bg_color);
 std::string		Rainbow(std::string str, Mode mode = foreground);
-std::string		ToColor(std::string str, Mode mode, int count, ...);
-std::string		ToColor(std::string str, int count, ...);
+std::string		ToColor(std::string str, Mode mode, size_t count, ...);
+std::string		ToColor(std::string str, size_t count, ...);
 std::string		ToColor(std::string str, Color color_a, Color color_b);
 std::string		ToColor(std::string str, Mode mode, Color color_a, Color color_b);
 
