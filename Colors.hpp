@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/13 15:18:37 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/18 10:15:37 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ std::string		ToColor(std::string str, Mode mode, size_t count, ...);
 std::string		ToColor(std::string str, size_t count, ...);
 std::string		ToColor(std::string str, Color color_a, Color color_b);
 std::string		ToColor(std::string str, Mode mode, Color color_a, Color color_b);
+std::string		ToColor(std::string str, Color color, Mode mode = foreground);
 
 #endif

@@ -8,7 +8,9 @@ There are several functions to call:
 
 <h3>ToColor():</h3>
 
-This function will print a string with a color gradient.
+This function will print a string with a color gradient if there are multiple color parameters.
+
+This function will print a colored string with the chosen color if there is a single color parameter.
 
 You can add as many colors as you like, as long as their number is greater than or equal to the number of characters.
 

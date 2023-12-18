@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/13 15:20:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/18 10:16:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ std::string RGB2(int r, int g, int b, int bg_r, int bg_g, int bg_b)
 	return (ss.str());
 }
 
+/* Returns the complete foreground and background color code with the given parameters. 
+	@param fg_color The foreground color.
+	@param bg_color The background color.
+*/
 std::string RGB2(Color fg_color, Color bg_color)
 {
 	std::stringstream ss;
@@ -206,4 +210,20 @@ std::string		ToColor(std::string str, Color start, Color end)
 std::string		ToColor(std::string str, Mode mode, Color start, Color end)
 {
 	return (ToColor(str, mode, 2, start, end));
+}
+
+/* Returns a colored string.
+	@param str The string to be printed.
+	@param color The color to be applied to the string.
+	@param mode (optional) To change the foreground(character) or the background color.
+*/
+std::string		ToColor(std::string str, Color color, Mode mode)
+{
+	std::stringstream ss;
+
+	ss << "\033[" <<  mode << ";2;"
+		<< SetMinMax(color.r) << ";"
+		<< SetMinMax(color.g) << ";"
+		<< SetMinMax(color.b) << "m" << str << "\033[0m";
+	return (ss.str());
 }
