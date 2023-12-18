@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/18 16:02:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/18 16:04:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ std::string		ToColor(std::string str, Mode mode, size_t count, ...)
 	double		r_off, g_off, b_off;
 	size_t			i = 0;
 
-	if (count < 1)
-		return (Error_Msg("You must put at least 1 color!"));
+	if (count <= 1)
+		return (Error_Msg("You must put at least 2 colors!"));
 	if (length < count)
 		return (Error_Msg("You must put less colors than the total character count!"));
 	va_start(va, count);
@@ -173,8 +173,8 @@ std::string		ToColor(std::string str, size_t count, ...)
 	double		r_off, g_off, b_off;
 	size_t			i = 0;
 
-	if (count < 1)
-		return (Error_Msg("You must put at least 1 color!"));
+	if (count <= 1)
+		return (Error_Msg("You must put at least 2 colors!"));
 	if (length < count)
 		return (Error_Msg("You must put less colors than the total character count!"));
 	va_start(va, count);
