@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/18 10:16:11 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/12/18 15:41:03 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ std::string RGB(int r, int g, int b, Mode mode)
 {
 	std::stringstream ss;
 	ss << "\033[" << mode << ";2;" << r << ";" << g << ";" << b << "m";
+	return (ss.str());
+}
+
+/* Returns the complete color code with the given parameters. 
+	@param color he color to be applied.
+	@param mode (optional) To change the foreground(character) or the background color.
+*/
+std::string RGB(Color color, Mode mode)
+{
+	std::stringstream ss;
+	ss << "\033[" << mode << ";2;" << color.r << ";" << color.g << ";" << color.b << "m";
 	return (ss.str());
 }
 

@@ -8,11 +8,24 @@ There are several functions to call:
 
 <h3>ToColor():</h3>
 
-This function will print a string with a color gradient if there are multiple color parameters.
+This function will print a colored string with the chosen color if there is a single color parameter. 
 
-This function will print a colored string with the chosen color if there is a single color parameter.
+There is a color reset at the end of the function.
+
+The parameters are:
+
+- `std::string msg`: The message to display.
+- `Color color`: The color be applied to the string.
+
+Example:
+
+	std::cout << ToColor("Hello world!", Colors::DeepPink) << std::endl;
+
+This function will also print a string with a color gradient if there are multiple color parameters.
 
 You can add as many colors as you like, as long as their number is greater than or equal to the number of characters.
+
+There is a color reset at the end of the function.
 
 The parameters are:
 
@@ -23,7 +36,7 @@ The parameters are:
 
 Examples:
 
-	std::cout << std::endl << ToColor("Lorem ipsum dolor sit amet, consectetur adipiscing elit...", 4, Colors::Cyan, Colors::DeepPink, Colors::Green, Colors::Cyan) << std::endl;
+	std::cout << ToColor("Lorem ipsum dolor sit amet, consectetur adipiscing elit...", 4, Colors::Cyan, Colors::DeepPink, Colors::Green, Colors::Cyan) << std::endl;
 <img src=https://github.com/Keftark/saves/blob/main/Colors/ToColor0.png width=463>
 
 or
@@ -91,6 +104,7 @@ Examples:
 
 or
 
+	std::cout << RGB(Colors::Red) << "Hello World!" << RESET << std::endl;
 	std::cout << RGB(165, 255, 0) << "Hello World!" << RESET << std::endl;
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/RGBForeground.png width=94>
