@@ -6,14 +6,14 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/18 16:04:50 by cpothin          ###   ########.fr       */
+/*   Updated: 2024/01/24 15:23:13 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Colors.hpp"
 
 /* Colors to call with `Colors::Red` for example */
-Color Colors::Black = {255, 255, 255};
+Color Colors::Black = {0, 0, 0};
 Color Colors::Blue = {0, 0, 255};
 Color Colors::Brown = {60, 28, 0};
 Color Colors::Cyan = {0, 255, 255};
@@ -29,7 +29,7 @@ Color Colors::Pink = {255, 192, 203};
 Color Colors::Red = {255, 0, 0};
 Color Colors::RoyalBlue = {65, 105, 225};
 Color Colors::Violet = {255, 0, 255};
-Color Colors::White = {0, 0, 0};
+Color Colors::White = {255, 255, 255};
 Color Colors::Yellow = {255, 255, 0};
 
 
