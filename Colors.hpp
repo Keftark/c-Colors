@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2023/12/18 15:30:43 by cpothin          ###   ########.fr       */
+/*   Updated: 2024/01/26 10:15:53 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ class Colors
 		static Color MistyRose;
 		static Color Pink;
 		static Color DeepPink;
+		static Color Gold;
 };
 
 typedef enum color_mode

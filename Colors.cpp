@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:54:25 by cpothin           #+#    #+#             */
-/*   Updated: 2024/01/24 15:23:13 by cpothin          ###   ########.fr       */
+/*   Updated: 2024/01/26 10:15:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Color Colors::RoyalBlue = {65, 105, 225};
 Color Colors::Violet = {255, 0, 255};
 Color Colors::White = {255, 255, 255};
 Color Colors::Yellow = {255, 255, 0};
+Color Colors::Gold = {204, 146, 50};
 
 
 std::string	Error_Msg(std::string msg)
