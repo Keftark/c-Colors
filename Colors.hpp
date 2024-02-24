@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2024/01/26 10:15:53 by cpothin          ###   ########.fr       */
+/*   Updated: 2024/02/24 18:03:17 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #include <cstdarg>
 #include <sstream>
 
+//
+#define ERRCOLOR RGB2(Colors::Red, Colors::Black)
+
 // Custom colors
 #define LIGHTRED		"\033[38;2;255;100;100m"
 #define LIME			"\033[38;2;165;255;0m"
@@ -29,6 +32,7 @@
 #define GOLD			"\033[38;2;204;146;50m"
 #define ORANGE			"\033[38;2;255;145;0m"
 #define BROWN			"\033[38;2;60;28;0m"
+#define CORAL			"\033[38;2;255;127;80m"
 
 // Text Styles
 #define RESET			"\033[0m"
@@ -89,6 +93,10 @@ class Colors
 		static Color Pink;
 		static Color DeepPink;
 		static Color Gold;
+		static Color Teal;
+		static Color DarkTeal;
+		static Color LightTeal;
+		static Color Coral;
 };
 
 typedef enum color_mode
@@ -97,15 +105,145 @@ typedef enum color_mode
 	background = 48
 }				Mode;
 
+int	SetMinMax(int value);
+std::string	Error_Msg(std::string msg);
+template <typename T>
+std::string to_str(const T& value)
+{
+    std::ostringstream os;
+    os << value;
+    return os.str();
+}
 std::string		RGB(Color color, Mode mode = foreground);
 std::string		RGB(int r, int g, int b, Mode mode = foreground);
 std::string		RGB2(int r, int g, int b, int bg_r, int bg_g, int bg_b);
 std::string		RGB2(Color fg_color, Color bg_color);
-std::string		Rainbow(std::string str, Mode mode = foreground);
-std::string		ToColor(std::string str, Mode mode, size_t count, ...);
-std::string		ToColor(std::string str, size_t count, ...);
-std::string		ToColor(std::string str, Color color_a, Color color_b);
-std::string		ToColor(std::string str, Mode mode, Color color_a, Color color_b);
-std::string		ToColor(std::string str, Color color, Mode mode = foreground);
 
+/* Returns a string with color gradients between each color.
+	@param str The string to be printed.
+	@param mode To change the foreground(character) or the background color.
+	@param count The amount of colors to be calculated.
+	@param ... The colors (ex: `Colors::Red`).
+*/
+template <typename T>
+std::string		ToColor(T arg, Mode mode, size_t count, ...)
+{
+	std::string str = to_str(arg);
+	std::stringstream ss;
+	va_list		va;
+	Color		color, fromColor, toColor;
+	size_t		length = str.length();
+	double		div = (double)length / (count - 1);
+	double		r_off, g_off, b_off;
+	size_t			i = 0;
+
+	if (count <= 1)
+		return (Error_Msg("You must put at least 2 colors!"));
+	if (length < count)
+		return (Error_Msg("You must put less colors than the total character count!"));
+	va_start(va, count);
+	fromColor = va_arg(va, Color);
+	while (i < length)
+	{
+		toColor = va_arg(va, Color);
+		r_off = (toColor.r - fromColor.r) / div;
+		g_off = (toColor.g - fromColor.g) / div;
+		b_off = (toColor.b - fromColor.b) / div;
+		for (size_t j = 0; j < div; j++)
+		{
+			if (i == length)
+				break ;
+			color.r = fromColor.r + r_off * (j + 1);
+			color.g = fromColor.g + g_off * (j + 1);
+			color.b = fromColor.b + b_off * (j + 1);
+			ss << "\033[" << mode << ";2;"
+				<< SetMinMax(color.r) << ";"
+				<< SetMinMax(color.g) << ";"
+				<< SetMinMax(color.b) << "m" << str[i] << "\033[0m";
+			i++;
+		}
+		fromColor = toColor;
+	}
+	va_end(va);
+	return (ss.str());
+}
+
+/* Returns a string with color gradients between each color.
+	@param str The string to be printed.
+	@param count The amount of colors to be calculated.
+	@param ... The colors (ex: `Colors::Red`).
+*/
+template <typename T>
+std::string		ToColor(T arg, size_t count, ...)
+{
+	std::string str = to_str(arg);
+	std::stringstream ss;
+	va_list		va;
+	Color		color, fromColor, toColor;
+	size_t		length = str.length();
+	double		div = (double)length / (count - 1);
+	double		r_off, g_off, b_off;
+	size_t			i = 0;
+
+	if (count <= 1)
+		return (Error_Msg("You must put at least 2 colors!"));
+	if (length < count)
+		return (Error_Msg("You must put less colors than the total character count!"));
+	va_start(va, count);
+	fromColor = va_arg(va, Color);
+	while (i < length)
+	{
+		toColor = va_arg(va, Color);
+		r_off = (toColor.r - fromColor.r) / div;
+		g_off = (toColor.g - fromColor.g) / div;
+		b_off = (toColor.b - fromColor.b) / div;
+		for (size_t j = 0; j < div; j++)
+		{
+			color.r = fromColor.r + r_off * (j + 1);
+			color.g = fromColor.g + g_off * (j + 1);
+			color.b = fromColor.b + b_off * (j + 1);
+			ss << "\033[38;2;"
+				<< SetMinMax(color.r) << ";"
+				<< SetMinMax(color.g) << ";"
+				<< SetMinMax(color.b) << "m" << str[i] << "\033[0m";
+			i++;
+		}
+		fromColor = toColor;
+	}
+	va_end(va);
+	return (ss.str());
+}
+
+/* Returns a string with color gradients between both colors.
+	@param str The string to be printed.
+	@param mode To change the foreground(character) or the background color.
+	@param start The starting color.
+	@param end The final color.
+*/
+template <typename T>
+std::string		ToColor(T arg, Mode mode, Color start, Color end)
+{
+	return (ToColor(arg, mode, 2, start, end));
+}
+
+/* Returns a string with color gradients between both colors.
+	@param str The string to be printed.
+	@param start The starting color.
+	@param end The final color.
+*/
+template <typename T>
+std::string		ToColor(T arg, Color start, Color end)
+{
+	return (ToColor(arg, 2, start, end));
+}
+
+/* Returns a string with beautiful rainbow colors! 
+	@param str The string to be printed.
+	@param mode (optional) To change the foreground(character) or the background color.
+*/
+template <typename T>
+std::string Rainbow(T arg, Mode mode = foreground)
+{
+	return (ToColor(arg, mode, 7, Colors::Red, Colors::Yellow, Colors::Green, Colors::Cyan, Colors::Blue, Colors::Violet, Colors::Red));
+}
 #endif
