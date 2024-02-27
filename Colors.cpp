@@ -25,11 +25,14 @@ Color Colors::DarkTeal		= {0, 100, 100};
 Color Colors::LightTeal		= {0, 215, 215};
 Color Colors::Coral			= {255, 127, 80};
 
-std::string	Error_Msg(std::string msg)
+/* Returns an error message containing the text in red in a black background.
+	@param str The string to display.
+*/
+std::string	ErrMsg(std::string msg)
 {
-	std::cout << std::endl << RED << "Error:" << RESET << std::endl <<
-		std::setw(8) << "" << LIGHTRED << msg << RESET << std::endl;
-	return std::string();
+	std::cout << std::endl << ERRCOLOR << "Error:" << std::endl <<
+		std::setw(8) << "" << msg << RESET << std::endl;
+	return (NULL);
 }
 
 /* Returns the complete color code with the given parameters. 
