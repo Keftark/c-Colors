@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2024/02/27 10:59:13 by cpothin          ###   ########.fr       */
+/*   Updated: 2024/02/28 17:36:17 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <cstdarg>
 #include <sstream>
 
-//
+// Black background with red font color
 #define ERRCOLOR RGB2(Colors::Red, Colors::Black)
 
 // Custom colors
@@ -166,9 +166,9 @@ std::string		ToColor(T arg, Mode mode, size_t count, ...)
 	size_t		i = 0;
 
 	if (count <= 1)
-		return (Error_Msg("You must put at least 2 colors!"));
+		return (ErrMsg("You must put at least 2 colors!"));
 	if (length < count)
-		return (Error_Msg("You must put less colors than the total character count!"));
+		return (ErrMsg("You must put less colors than the total character count!"));
 	va_start(va, count);
 	fromColor = va_arg(va, Color);
 	while (i < length)
@@ -197,9 +197,9 @@ std::string		ToColor(T arg, size_t count, ...)
 	size_t			i = 0;
 
 	if (count <= 1)
-		return (Error_Msg("You must put at least 2 colors!"));
+		return (ErrMsg("You must put at least 2 colors!"));
 	if (length < count)
-		return (Error_Msg("You must put less colors than the total character count!"));
+		return (ErrMsg("You must put less colors than the total character count!"));
 	va_start(va, count);
 	fromColor = va_arg(va, Color);
 	while (i < length)
