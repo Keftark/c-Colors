@@ -162,18 +162,24 @@ This function will print an error message on the error fd.
 The parameters are:
 
 - `std::string msg`: The message to display.
-- `bool foregroundOnly`: If true, prints the message in a vibrant red color. If false (by default), prints the message with a black background and a vibrent red color.
+- `bool foregroundOnly`: If true, prints the message in a vibrant red color. If false (by default), prints the message with a black background and a vibrant red color.
 
-`foregroundOnly = false;`
+```C++
+ErrMsg("This is an error message with a black background");
+// or
+ErrMsg("This is an error message with a black background", false);
+```
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/ErrorBG.png width=447>
 
-`foregroundOnly = true;`
+```C++
+ErrMsg("This is an error message", true);
+```
 
 <img src=https://github.com/Keftark/saves/blob/main/Colors/Error.png width=260>
 
 # Defines
 
-There are multiple `#define` in the `Colors.hpp` file for common and custom colors.
+There are multiple `#define` for common and custom colors.
 
 Feel free to check them and add what you want!
