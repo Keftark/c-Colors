@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Colors.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 09:31:30 by cpothin           #+#    #+#             */
-/*   Updated: 2024/02/28 17:36:17 by cpothin          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef COLORS_HPP
 # define COLORS_HPP
 
@@ -33,6 +21,7 @@
 #define ORANGE			"\033[38;2;255;145;0m"
 #define BROWN			"\033[38;2;60;28;0m"
 #define CORAL			"\033[38;2;255;127;80m"
+#define GREY			"\033[38;2;100;100;100m"
 
 // Text Styles
 #define RESET			"\033[0m"
@@ -97,6 +86,7 @@ class Colors
 		static Color DarkTeal;
 		static Color LightTeal;
 		static Color Coral;
+		static Color Grey;
 };
 
 typedef enum color_mode
@@ -146,6 +136,33 @@ static inline std::string ApplyColor(Color &toColor, Color &fromColor, size_t &i
 	}
 	fromColor = toColor;
 	return ss.str();	
+}
+
+/* Returns a string with a single color.
+	@param arg The string/int/anything to be printed.
+	@param mode To change the foreground(character) or the background color.
+	@param color The color to be applied.
+*/
+template <typename T>
+std::string		ToColor(T arg, Mode mode, Color color)
+{
+	std::string str = to_str(arg);
+	std::stringstream ss;
+	ss << "\033[" << mode << ";2;"
+			<< SetMinMax(color.r) << ";"
+			<< SetMinMax(color.g) << ";"
+			<< SetMinMax(color.b) << "m" << str << "\033[0m";
+	return ss.str();
+}
+
+/* Returns a string with a single color.
+	@param arg The string/int/anything to be printed.
+	@param color The color to be applied.
+*/
+template <typename T>
+std::string		ToColor(T arg, Color color)
+{
+	return ToColor(arg, foreground, color);
 }
 
 /* Returns a string with color gradients between each color.
