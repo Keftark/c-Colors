@@ -2,7 +2,7 @@
 
 This project was created to make the terminal output more pleasant to read, but also to have fun while learning!
 
-This project is designed to run on Linux and on c++98 version to meet the requirements of 42 school c++ subjects.
+This project is designed to run on Linux and on c++98 version to meet the requirements of my 42 school c++ subjects.
 
 ## Install:
 
@@ -166,11 +166,11 @@ The parameters are:
 
 `foregroundOnly = false;`
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/ErrorBG.png width=96>
+<img src=https://github.com/Keftark/saves/blob/main/Colors/ErrorBG.png width=447>
 
 `foregroundOnly = true;`
 
-<img src=https://github.com/Keftark/saves/blob/main/Colors/Error.png width=96>
+<img src=https://github.com/Keftark/saves/blob/main/Colors/Error.png width=260>
 
 # Defines
 
